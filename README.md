@@ -15,7 +15,6 @@
 
 ### Association
 
-- has_many :addresses
 - has_many :items
 - has_many :purchases
 
@@ -36,7 +35,6 @@
 ### Association
 
 - belongs_to :user
-- has_one :address
 - has_one :purchase
 
 ## addresses テーブル
@@ -48,13 +46,11 @@
 | city               | string      | null: false                    |
 | house_number       | string      | null: false                    |
 | building_name      | string      |                                |
-| phone_number       | integer     | null: false                    |
+| phone_number       | string     | null: false                    |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
-- has_one :purchase
+- belongs_to :purchase
 
 ## purchasesテーブル
 
@@ -67,4 +63,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one :address
