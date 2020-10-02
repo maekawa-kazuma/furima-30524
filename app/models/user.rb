@@ -18,5 +18,5 @@ class User < ApplicationRecord
   validates :birth_date, presence: true
   validates :email, uniqueness: true
   validates :password, format: { with: VALID_PASSWORD_REGEX }
-  validates :password_confirm, presence: true
+  validates :password_confirmation, presence: true
 end
