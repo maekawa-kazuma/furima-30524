@@ -7,11 +7,13 @@ RSpec.describe User, type: :model do
     end
 
     it "nicknameとemailとpasswordとpassword_confirmationとlast_name,first_nameとlast_name_read,first_name_readとbirth_dateが存在すれば登録できること" do
-      
+      expect(@user).to be_valid
     end
 
     it "nicknameが空では登録できないこと" do
-      
+      @user.nickname = nil
+      @user.valid?
+      expect(@users.errors_full_messages).to include("")
     end
 
     it "emailが空では登録できないこと" do
