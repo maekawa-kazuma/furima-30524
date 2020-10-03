@@ -2,7 +2,12 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash (:category, :state, :burden, :area, :day)
+  belongs_to_active_hash :category
+  belongs_to_active_hash :state
+  belongs_to_active_hash :burden
+  belongs_to_active_hash :area
+  belongs_to_active_hash :day
+
   with_options  presence: true do
     validates :name
     validates :text
