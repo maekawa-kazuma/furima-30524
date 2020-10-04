@@ -10,7 +10,7 @@ class Item < ApplicationRecord
 
   VALID_PRICE_REGEX = /\A[0-9]+\z/.freeze
 
-  with_options  presence: true do
+  with_options presence: true do
     validates :name
     validates :text
     validates :category_id, numericality: { other_than: 1 }
@@ -18,7 +18,7 @@ class Item < ApplicationRecord
     validates :burden_id, numericality: { other_than: 1 }
     validates :area_id, numericality: { other_than: 1 }
     validates :day_id, numericality: { other_than: 1 }
-    validates :price, format: { with: VALID_PRICE_REGEX }, numericality: { less_than_or_equal_to: 9999999, greater_than_or_equal_to: 300 }
+    validates :price, format: { with: VALID_PRICE_REGEX }, numericality: { less_than_or_equal_to: 9_999_999, greater_than_or_equal_to: 300 }
     validates :image
   end
 end
