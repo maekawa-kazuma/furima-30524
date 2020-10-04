@@ -5,9 +5,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    if user_signed_in?
-      @item = Item.new
-    end
+    @item = Item.new if user_signed_in?
   end
 
   def create
@@ -25,9 +23,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    if user_signed_in? && current_user.id != @item.user_id
-      redirect_to root_path
-    end
+    redirect_to root_path if user_signed_in? && current_user.id != @item.user_id
   end
 
   def update
@@ -38,6 +34,7 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
+
   private
 
   def item_params
