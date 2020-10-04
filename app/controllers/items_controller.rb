@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :new]
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -6,8 +7,6 @@ class ItemsController < ApplicationController
   def new
     if user_signed_in?
       @item = Item.new
-    else
-      redirect_to new_user_session_path
     end
   end
 
@@ -28,8 +27,6 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if user_signed_in? && current_user.id != @item.user_id
       redirect_to root_path
-    elsif current_user.id = nil
-      redirect_to new_user_session_path
     end
   end
 
