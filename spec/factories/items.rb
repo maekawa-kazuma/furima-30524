@@ -3,7 +3,7 @@ FactoryBot.define do
     name { Faker::Name.name }
     text { Faker::Lorem.sentence }
     category { Category.all.sample }
-    state { State.all.sample}
+    state { State.all.sample }
     burden { Burden.all.sample}
     area { Area.all.sample}
     day { Day.all.sample}
