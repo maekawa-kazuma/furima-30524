@@ -4,8 +4,8 @@ FactoryBot.define do
     text { Faker::Lorem.sentence }
     category { Category.all.sample }
     state { State.all.sample }
-    burden { Burden.all.sample}
-    area { Area.all.sample}
+    burden { Burden.all.sample }
+    area { Area.all.sample }
     day { Day.all.sample}
     price { '1000' }
     association :user
