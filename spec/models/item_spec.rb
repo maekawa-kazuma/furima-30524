@@ -105,7 +105,6 @@ RSpec.describe Item, type: :model do
      it 'day_idが初期のまま(1)だと保存できない' do
        @item.day_id = 1
        @item.valid?
-       binding.pry
        expect(@item.errors.full_messages).to include("Day must be other than 1")
      end
    end
