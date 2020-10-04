@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :item do
     name { Faker::Name.name }
     text { Faker::Lorem.sentence }
-    category { Category.all.sample}
+    category { Category.all.sample }
     state { State.all.sample}
     burden { Burden.all.sample}
     area { Area.all.sample}
