@@ -4,7 +4,7 @@ RSpec.describe PurchaseAddress, type: :model do
   before do
     @buyer = FactoryBot.create(:user)
     @seller = FactoryBot.create(:user)
-    @item = FactoryBot.create(:item,user_id: @seller.id)
+    @item = FactoryBot.create(:item, user_id: @seller.id)
     @purchase_address = FactoryBot.build(:purchase_address, user_id: @buyer.id, item_id: @item.id)
   end
 
@@ -71,25 +71,25 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'prefecture_idが初期値のまま(id=1)だと保存できない' do
         @purchase_address.prefecture_id = 1
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@purchase_address.errors.full_messages).to include('Prefecture must be other than 1')
       end
 
       it 'postal_codeに-が入っていない場合は保存できない' do
-        @purchase_address.postal_code = "1234567"
+        @purchase_address.postal_code = '1234567'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Postal code is invalid") 
+        expect(@purchase_address.errors.full_messages).to include('Postal code is invalid')
       end
 
       it 'phone_numberに-が入っている場合は保存できない' do
-        @purchase_address.phone_number = "090-1234-5678"
+        @purchase_address.phone_number = '090-1234-5678'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'phone_numberが12桁以上の場合は保存できない' do
-        @purchase_address.phone_number = "090123456789"
+        @purchase_address.phone_number = '090123456789'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_address.errors.full_messages).to include('Phone number is invalid')
       end
     end
   end

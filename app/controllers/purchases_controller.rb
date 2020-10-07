@@ -1,11 +1,11 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: :index
-  
+
   def index
     @item = Item.find(params[:item_id])
     @item_checked = Purchase.find_by(item_id: params[:item_id])
-    if current_user.id == @item.user_id || @item_checked != nil
-      return redirect_to root_path
+    if current_user.id == @item.user_id || !@item_checked.nil?
+      redirect_to root_path
     else
       @purchase_address = PurchaseAddress.new
     end
@@ -26,11 +26,11 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_address_params
-    params.require(:purchase_address).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(token: params[:token], item_id: params[:item_id],user_id: current_user.id)
+    params.require(:purchase_address).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(token: params[:token], item_id: params[:item_id], user_id: current_user.id)
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: purchase_address_params[:token],
