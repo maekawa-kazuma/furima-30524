@@ -3,9 +3,7 @@ class PurchasesController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-  
-    @item_checked = Purchase.find_by(item_id: params[:item_id])
-    if current_user.id == @item.user_id || !@item_checked.nil?
+    if current_user.id == @item.user_id || @item.purchase != nil
       redirect_to root_path
     else
       @purchase_address = PurchaseAddress.new

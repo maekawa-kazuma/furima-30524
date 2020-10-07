@@ -19,7 +19,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item_checked = Purchase.find_by(item_id: params[:id])
   end
 
   def edit
