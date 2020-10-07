@@ -11,6 +11,7 @@ class PurchaseAddress
     validates :city
     validates :house_number
     validates :phone_number, format: {with: VALID_PHONE_NUMBER_REGEX}
+    validates :token
   end
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
