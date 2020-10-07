@@ -3,8 +3,8 @@ class PurchasesController < ApplicationController
   
   def index
     @item = Item.find(params[:item_id])
-    item_checked = Purchase.find_by(item_id: params[:item_id])
-    if current_user.id == @item.user_id || item_checked != nil
+    @item_checked = Purchase.find_by(item_id: params[:item_id])
+    if current_user.id == @item.user_id || @item_checked != nil
       return redirect_to root_path
     else
       @purchase_address = PurchaseAddress.new
